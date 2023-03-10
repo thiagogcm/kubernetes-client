@@ -19,7 +19,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/gogo/protobuf/types"
+	//"github.com/gogo/protobuf/types"
 
 	"github.com/fabric8io/kubernetes-client/generator/pkg/schemagen"
 
@@ -87,14 +87,14 @@ func main() {
 	}
 
 	// overwriting some times
-	manualTypeMap := map[reflect.Type]string{
-		reflect.TypeOf(types.BoolValue{}):   "java.lang.Boolean",
-		reflect.TypeOf(types.DoubleValue{}): "java.lang.Double",
-		reflect.TypeOf(types.Duration{}):    "java.lang.String",
-		reflect.TypeOf(types.Timestamp{}):   "java.lang.String",
-		reflect.TypeOf(types.Int32Value{}):  "java.lang.Integer",
-		reflect.TypeOf(types.UInt32Value{}): "java.lang.Integer",
-	}
+	//manualTypeMap := map[reflect.Type]string{
+	//	reflect.TypeOf(types.BoolValue{}):   "java.lang.Boolean",
+	//	reflect.TypeOf(types.DoubleValue{}): "java.lang.Double",
+	//	reflect.TypeOf(types.Duration{}):    "java.lang.String",
+	//	reflect.TypeOf(types.Timestamp{}):   "java.lang.String",
+	//	reflect.TypeOf(types.Int32Value{}):  "java.lang.Integer",
+	//	reflect.TypeOf(types.UInt32Value{}): "java.lang.Integer",
+	//}
 
 	// types for interfaces
 	interfacesMapping := map[string][]reflect.Type{
@@ -136,6 +136,7 @@ func main() {
 	// custom enum mapping
 	enumMapping := map[reflect.Type]schemagen.EnumDescriptor{}
 
+	manualTypeMap := make(map[reflect.Type]string)
 	json := schemagen.GenerateSchemaWithAllOptions("http://fabric8.io/istio/IstioSchema#", crdLists, typesDescriptors, providedPackages, manualTypeMap, packageMapping, mappingSchema, providedTypes, constraints, interfacesMapping, javaNameStrategyMapping, enumMapping, "io.fabric8")
 
 	fmt.Println(json)
