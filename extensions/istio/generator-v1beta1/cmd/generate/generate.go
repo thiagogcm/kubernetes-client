@@ -50,6 +50,8 @@ func main() {
 		reflect.TypeOf(client_networking_v1beta1.SidecarList{}):         schemagen.Namespaced,
 		reflect.TypeOf(client_networking_v1beta1.VirtualServiceList{}):  schemagen.Namespaced,
 		reflect.TypeOf(client_networking_v1beta1.WorkloadEntryList{}):   schemagen.Namespaced,
+		reflect.TypeOf(client_networking_v1beta1.WorkloadGroupList{}):   schemagen.Namespaced,
+		reflect.TypeOf(client_networking_v1beta1.ProxyConfigList{}):     schemagen.Namespaced,
 
 		// security
 		reflect.TypeOf(client_security_v1beta1.PeerAuthenticationList{}):    schemagen.Namespaced,
@@ -82,7 +84,6 @@ func main() {
 	packageMapping := map[string]schemagen.PackageInformation{
 		"istio.io/client-go/pkg/apis/networking/v1beta1": {JavaPackage: "io.fabric8.istio.api.networking.v1beta1", ApiGroup: "networking.istio.io", ApiVersion: "v1beta1"},
 		"istio.io/client-go/pkg/apis/security/v1beta1":   {JavaPackage: "io.fabric8.istio.api.security.v1beta1", ApiGroup: "security.istio.io", ApiVersion: "v1beta1"},
-		"istio.io/client-go/pkg/apis/telemetry/v1alpha1": {JavaPackage: "io.fabric8.istio.api.telemetry.v1alpha1", ApiGroup: "telemetry.istio.io", ApiVersion: "v1alpha1"},
 	}
 
 	// converts all packages starting with <key> to a java package using an automated scheme:
@@ -90,6 +91,10 @@ func main() {
 	//  - replace '/' with '.' for a valid java package name
 	mappingSchema := map[string]string{
 		"istio.io/api": "io.fabric8.istio.api",
+		"google.golang.org/protobuf/types/known/wrapperspb":  "io.fabric8.istio.api.internal.protobuf.wrapperspb",
+		"google.golang.org/protobuf/types/known/durationpb":  "io.fabric8.istio.api.internal.protobuf.durationpb",
+		"google.golang.org/protobuf/types/known/timestamppb": "io.fabric8.istio.api.internal.protobuf.timestamppb",
+		"google.golang.org/protobuf/types/known/structpb":    "io.fabric8.istio.api.internal.protobuf.structpb",
 	}
 
 	// overwriting some times
@@ -101,7 +106,6 @@ func main() {
 		reflect.TypeOf(wrapperspb.Int32Value{}):  "java.lang.Integer",
 		reflect.TypeOf(wrapperspb.UInt32Value{}): "java.lang.Integer",
 		reflect.TypeOf(structpb.Struct{}):        "java.util.Map<String, Object>",
-		//reflect.TypeOf(protoimpl.MessageState{}): "java.lang.Object",
 	}
 
 	// types for interfaces
@@ -115,6 +119,7 @@ func main() {
 		"istio.io/api/networking/v1beta1/isLoadBalancerSettings_ConsistentHashLB_HashAlgorithm": {reflect.TypeOf(api_networking_v1beta1.LoadBalancerSettings_ConsistentHashLB_RingHash{}), reflect.TypeOf(api_networking_v1beta1.LoadBalancerSettings_ConsistentHashLB_Maglev{})},
 		"istio.io/api/networking/v1beta1/isHTTPRedirect_RedirectPort":                           {reflect.TypeOf(api_networking_v1beta1.HTTPRedirect_Port{}), reflect.TypeOf(api_networking_v1beta1.HTTPRedirect_DerivePort{})},
 		"istio.io/api/networking/v1beta1/isHTTPBody_Specifier":                                  {reflect.TypeOf(api_networking_v1beta1.HTTPBody_String_{}), reflect.TypeOf(api_networking_v1beta1.HTTPBody_Bytes{})},
+		"istio.io/api/networking/v1beta1/isReadinessProbe_HealthCheckMethod":                    {reflect.TypeOf(api_networking_v1beta1.ReadinessProbe_HttpGet{}), reflect.TypeOf(api_networking_v1beta1.ReadinessProbe_TcpSocket{}), reflect.TypeOf(api_networking_v1beta1.ReadinessProbe_Exec{})},
 
 		// security
 		"istio.io/api/security/v1beta1/isAuthorizationPolicy_ActionDetail": {reflect.TypeOf(api_security_v1beta1.AuthorizationPolicy_Provider{})},
@@ -130,9 +135,12 @@ func main() {
 			reflect.TypeOf(api_networking_v1beta1.Sidecar{}):             "io.fabric8.istio.api.networking.v1beta1.SidecarSpec",
 			reflect.TypeOf(api_networking_v1beta1.VirtualService{}):      "io.fabric8.istio.api.networking.v1beta1.VirtualServiceSpec",
 			reflect.TypeOf(api_networking_v1beta1.WorkloadEntry{}):       "io.fabric8.istio.api.networking.v1beta1.WorkloadEntrySpec",
+			reflect.TypeOf(api_networking_v1beta1.WorkloadGroup{}):       "io.fabric8.istio.api.networking.v1beta1.WorkloadGroupSpec",
+			reflect.TypeOf(api_networking_v1beta1.ProxyConfig{}):         "io.fabric8.istio.api.networking.v1beta1.ProxyConfigSpec",
 			reflect.TypeOf(api_security_v1beta1.AuthorizationPolicy{}):   "io.fabric8.istio.api.security.v1beta1.AuthorizationPolicySpec",
 			reflect.TypeOf(api_security_v1beta1.PeerAuthentication{}):    "io.fabric8.istio.api.security.v1beta1.PeerAuthenticationSpec",
 			reflect.TypeOf(api_security_v1beta1.RequestAuthentication{}): "io.fabric8.istio.api.security.v1beta1.RequestAuthenticationSpec",
+			reflect.TypeOf(structpb.Value{}):                             "io.fabric8.istio.api.internal.protobuf.structpb.Value",
 
 			// Avoid same name for:
 			reflect.TypeOf(api_networking_v1beta1.LoadBalancerSettings_ConsistentHashLB_HTTPCookie{}): "io.fabric8.istio.api.networking.v1beta1.LoadBalancerSettingsConsistentHashLBHttpCookieValue",
