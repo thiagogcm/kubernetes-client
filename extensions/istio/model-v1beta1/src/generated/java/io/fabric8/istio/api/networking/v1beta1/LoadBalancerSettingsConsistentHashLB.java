@@ -38,6 +38,7 @@ import lombok.experimental.Accessors;
     "apiVersion",
     "kind",
     "metadata",
+    "HashAlgorithm",
     "HashKey",
     "minimumRingSize"
 })
@@ -66,6 +67,9 @@ import lombok.experimental.Accessors;
 public class LoadBalancerSettingsConsistentHashLB implements KubernetesResource
 {
 
+    @JsonProperty("HashAlgorithm")
+    @JsonUnwrapped
+    private IsLoadBalancerSettingsConsistentHashLBHashAlgorithm hashAlgorithm;
     @JsonProperty("HashKey")
     @JsonUnwrapped
     private IsLoadBalancerSettingsConsistentHashLBHashKey hashKey;
@@ -85,11 +89,23 @@ public class LoadBalancerSettingsConsistentHashLB implements KubernetesResource
      * 
      * @param hashKey
      * @param minimumRingSize
+     * @param hashAlgorithm
      */
-    public LoadBalancerSettingsConsistentHashLB(IsLoadBalancerSettingsConsistentHashLBHashKey hashKey, Integer minimumRingSize) {
+    public LoadBalancerSettingsConsistentHashLB(IsLoadBalancerSettingsConsistentHashLBHashAlgorithm hashAlgorithm, IsLoadBalancerSettingsConsistentHashLBHashKey hashKey, Integer minimumRingSize) {
         super();
+        this.hashAlgorithm = hashAlgorithm;
         this.hashKey = hashKey;
         this.minimumRingSize = minimumRingSize;
+    }
+
+    @JsonProperty("HashAlgorithm")
+    public IsLoadBalancerSettingsConsistentHashLBHashAlgorithm getHashAlgorithm() {
+        return hashAlgorithm;
+    }
+
+    @JsonProperty("HashAlgorithm")
+    public void setHashAlgorithm(IsLoadBalancerSettingsConsistentHashLBHashAlgorithm hashAlgorithm) {
+        this.hashAlgorithm = hashAlgorithm;
     }
 
     @JsonProperty("HashKey")

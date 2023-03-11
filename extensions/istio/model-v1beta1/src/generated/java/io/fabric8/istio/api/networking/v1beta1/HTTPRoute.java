@@ -41,6 +41,7 @@ import lombok.experimental.Accessors;
     "metadata",
     "corsPolicy",
     "delegate",
+    "directResponse",
     "fault",
     "headers",
     "match",
@@ -83,6 +84,8 @@ public class HTTPRoute implements KubernetesResource
     private CorsPolicy corsPolicy;
     @JsonProperty("delegate")
     private Delegate delegate;
+    @JsonProperty("directResponse")
+    private HTTPDirectResponse directResponse;
     @JsonProperty("fault")
     private HTTPFaultInjection fault;
     @JsonProperty("headers")
@@ -135,11 +138,13 @@ public class HTTPRoute implements KubernetesResource
      * @param retries
      * @param route
      * @param name
+     * @param directResponse
      */
-    public HTTPRoute(CorsPolicy corsPolicy, Delegate delegate, HTTPFaultInjection fault, Headers headers, List<HTTPMatchRequest> match, Destination mirror, Integer mirrorPercent, Percent mirrorPercentage, String name, HTTPRedirect redirect, HTTPRetry retries, HTTPRewrite rewrite, List<HTTPRouteDestination> route, String timeout) {
+    public HTTPRoute(CorsPolicy corsPolicy, Delegate delegate, HTTPDirectResponse directResponse, HTTPFaultInjection fault, Headers headers, List<HTTPMatchRequest> match, Destination mirror, Integer mirrorPercent, Percent mirrorPercentage, String name, HTTPRedirect redirect, HTTPRetry retries, HTTPRewrite rewrite, List<HTTPRouteDestination> route, String timeout) {
         super();
         this.corsPolicy = corsPolicy;
         this.delegate = delegate;
+        this.directResponse = directResponse;
         this.fault = fault;
         this.headers = headers;
         this.match = match;
@@ -172,6 +177,16 @@ public class HTTPRoute implements KubernetesResource
     @JsonProperty("delegate")
     public void setDelegate(Delegate delegate) {
         this.delegate = delegate;
+    }
+
+    @JsonProperty("directResponse")
+    public HTTPDirectResponse getDirectResponse() {
+        return directResponse;
+    }
+
+    @JsonProperty("directResponse")
+    public void setDirectResponse(HTTPDirectResponse directResponse) {
+        this.directResponse = directResponse;
     }
 
     @JsonProperty("fault")

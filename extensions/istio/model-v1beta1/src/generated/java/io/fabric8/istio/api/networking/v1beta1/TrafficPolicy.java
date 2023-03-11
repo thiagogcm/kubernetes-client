@@ -43,7 +43,8 @@ import lombok.experimental.Accessors;
     "loadBalancer",
     "outlierDetection",
     "portLevelSettings",
-    "tls"
+    "tls",
+    "tunnel"
 })
 @ToString
 @EqualsAndHashCode
@@ -81,6 +82,8 @@ public class TrafficPolicy implements KubernetesResource
     private List<TrafficPolicyPortTrafficPolicy> portLevelSettings = new ArrayList<TrafficPolicyPortTrafficPolicy>();
     @JsonProperty("tls")
     private ClientTLSSettings tls;
+    @JsonProperty("tunnel")
+    private TrafficPolicyTunnelSettings tunnel;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
@@ -97,15 +100,17 @@ public class TrafficPolicy implements KubernetesResource
      * @param portLevelSettings
      * @param connectionPool
      * @param tls
+     * @param tunnel
      * @param outlierDetection
      */
-    public TrafficPolicy(ConnectionPoolSettings connectionPool, LoadBalancerSettings loadBalancer, OutlierDetection outlierDetection, List<TrafficPolicyPortTrafficPolicy> portLevelSettings, ClientTLSSettings tls) {
+    public TrafficPolicy(ConnectionPoolSettings connectionPool, LoadBalancerSettings loadBalancer, OutlierDetection outlierDetection, List<TrafficPolicyPortTrafficPolicy> portLevelSettings, ClientTLSSettings tls, TrafficPolicyTunnelSettings tunnel) {
         super();
         this.connectionPool = connectionPool;
         this.loadBalancer = loadBalancer;
         this.outlierDetection = outlierDetection;
         this.portLevelSettings = portLevelSettings;
         this.tls = tls;
+        this.tunnel = tunnel;
     }
 
     @JsonProperty("connectionPool")
@@ -156,6 +161,16 @@ public class TrafficPolicy implements KubernetesResource
     @JsonProperty("tls")
     public void setTls(ClientTLSSettings tls) {
         this.tls = tls;
+    }
+
+    @JsonProperty("tunnel")
+    public TrafficPolicyTunnelSettings getTunnel() {
+        return tunnel;
+    }
+
+    @JsonProperty("tunnel")
+    public void setTunnel(TrafficPolicyTunnelSettings tunnel) {
+        this.tunnel = tunnel;
     }
 
     @JsonAnyGetter

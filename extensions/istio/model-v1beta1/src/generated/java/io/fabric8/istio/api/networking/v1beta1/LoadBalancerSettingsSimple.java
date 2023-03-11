@@ -36,7 +36,7 @@ import lombok.experimental.Accessors;
     "apiVersion",
     "kind",
     "metadata",
-    "simple"
+    "Simple"
 })
 @ToString
 @EqualsAndHashCode
@@ -63,7 +63,7 @@ import lombok.experimental.Accessors;
 public class LoadBalancerSettingsSimple implements IsLoadBalancerSettingsLbPolicy
 {
 
-    @JsonProperty("simple")
+    @JsonProperty("Simple")
     private LoadBalancerSettingsSimpleLB simple;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
@@ -84,12 +84,12 @@ public class LoadBalancerSettingsSimple implements IsLoadBalancerSettingsLbPolic
         this.simple = simple;
     }
 
-    @JsonProperty("simple")
+    @JsonProperty("Simple")
     public LoadBalancerSettingsSimpleLB getSimple() {
         return simple;
     }
 
-    @JsonProperty("simple")
+    @JsonProperty("Simple")
     public void setSimple(LoadBalancerSettingsSimpleLB simple) {
         this.simple = simple;
     }

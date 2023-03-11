@@ -36,7 +36,7 @@ import lombok.experimental.Accessors;
     "apiVersion",
     "kind",
     "metadata",
-    "Exact"
+    "Maglev"
 })
 @ToString
 @EqualsAndHashCode
@@ -60,11 +60,11 @@ import lombok.experimental.Accessors;
     @BuildableReference(Volume.class),
     @BuildableReference(VolumeMount.class)
 })
-public class StringMatchExact implements IsStringMatchMatchType
+public class LoadBalancerSettingsConsistentHashLBMaglev implements IsLoadBalancerSettingsConsistentHashLBHashAlgorithm
 {
 
-    @JsonProperty("Exact")
-    private String exact;
+    @JsonProperty("Maglev")
+    private LoadBalancerSettingsConsistentHashLBMagLev maglev;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
@@ -72,26 +72,26 @@ public class StringMatchExact implements IsStringMatchMatchType
      * No args constructor for use in serialization
      * 
      */
-    public StringMatchExact() {
+    public LoadBalancerSettingsConsistentHashLBMaglev() {
     }
 
     /**
      * 
-     * @param exact
+     * @param maglev
      */
-    public StringMatchExact(String exact) {
+    public LoadBalancerSettingsConsistentHashLBMaglev(LoadBalancerSettingsConsistentHashLBMagLev maglev) {
         super();
-        this.exact = exact;
+        this.maglev = maglev;
     }
 
-    @JsonProperty("Exact")
-    public String getExact() {
-        return exact;
+    @JsonProperty("Maglev")
+    public LoadBalancerSettingsConsistentHashLBMagLev getMaglev() {
+        return maglev;
     }
 
-    @JsonProperty("Exact")
-    public void setExact(String exact) {
-        this.exact = exact;
+    @JsonProperty("Maglev")
+    public void setMaglev(LoadBalancerSettingsConsistentHashLBMagLev maglev) {
+        this.maglev = maglev;
     }
 
     @JsonAnyGetter

@@ -40,7 +40,8 @@ import lombok.experimental.Accessors;
     "bind",
     "captureMode",
     "defaultEndpoint",
-    "port"
+    "port",
+    "tls"
 })
 @ToString
 @EqualsAndHashCode
@@ -75,6 +76,8 @@ public class IstioIngressListener implements KubernetesResource
     private String defaultEndpoint;
     @JsonProperty("port")
     private Port port;
+    @JsonProperty("tls")
+    private ServerTLSSettings tls;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
@@ -91,13 +94,15 @@ public class IstioIngressListener implements KubernetesResource
      * @param port
      * @param defaultEndpoint
      * @param captureMode
+     * @param tls
      */
-    public IstioIngressListener(String bind, CaptureMode captureMode, String defaultEndpoint, Port port) {
+    public IstioIngressListener(String bind, CaptureMode captureMode, String defaultEndpoint, Port port, ServerTLSSettings tls) {
         super();
         this.bind = bind;
         this.captureMode = captureMode;
         this.defaultEndpoint = defaultEndpoint;
         this.port = port;
+        this.tls = tls;
     }
 
     @JsonProperty("bind")
@@ -138,6 +143,16 @@ public class IstioIngressListener implements KubernetesResource
     @JsonProperty("port")
     public void setPort(Port port) {
         this.port = port;
+    }
+
+    @JsonProperty("tls")
+    public ServerTLSSettings getTls() {
+        return tls;
+    }
+
+    @JsonProperty("tls")
+    public void setTls(ServerTLSSettings tls) {
+        this.tls = tls;
     }
 
     @JsonAnyGetter

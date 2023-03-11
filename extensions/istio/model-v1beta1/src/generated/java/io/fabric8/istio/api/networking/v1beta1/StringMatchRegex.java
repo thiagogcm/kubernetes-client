@@ -36,7 +36,7 @@ import lombok.experimental.Accessors;
     "apiVersion",
     "kind",
     "metadata",
-    "regex"
+    "Regex"
 })
 @ToString
 @EqualsAndHashCode
@@ -63,7 +63,7 @@ import lombok.experimental.Accessors;
 public class StringMatchRegex implements IsStringMatchMatchType
 {
 
-    @JsonProperty("regex")
+    @JsonProperty("Regex")
     private String regex;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
@@ -84,12 +84,12 @@ public class StringMatchRegex implements IsStringMatchMatchType
         this.regex = regex;
     }
 
-    @JsonProperty("regex")
+    @JsonProperty("Regex")
     public String getRegex() {
         return regex;
     }
 
-    @JsonProperty("regex")
+    @JsonProperty("Regex")
     public void setRegex(String regex) {
         this.regex = regex;
     }

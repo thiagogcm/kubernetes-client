@@ -1,5 +1,5 @@
 
-package io.fabric8.istio.api.networking.v1beta1;
+package io.fabric8.istio.api.security.v1beta1;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -14,6 +14,7 @@ import io.fabric8.kubernetes.api.model.Container;
 import io.fabric8.kubernetes.api.model.ContainerPort;
 import io.fabric8.kubernetes.api.model.EnvVar;
 import io.fabric8.kubernetes.api.model.IntOrString;
+import io.fabric8.kubernetes.api.model.KubernetesResource;
 import io.fabric8.kubernetes.api.model.LabelSelector;
 import io.fabric8.kubernetes.api.model.LocalObjectReference;
 import io.fabric8.kubernetes.api.model.ObjectMeta;
@@ -36,7 +37,8 @@ import lombok.experimental.Accessors;
     "apiVersion",
     "kind",
     "metadata",
-    "Exact"
+    "claim",
+    "header"
 })
 @ToString
 @EqualsAndHashCode
@@ -60,11 +62,13 @@ import lombok.experimental.Accessors;
     @BuildableReference(Volume.class),
     @BuildableReference(VolumeMount.class)
 })
-public class StringMatchExact implements IsStringMatchMatchType
+public class ClaimToHeader implements KubernetesResource
 {
 
-    @JsonProperty("Exact")
-    private String exact;
+    @JsonProperty("claim")
+    private String claim;
+    @JsonProperty("header")
+    private String header;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
@@ -72,26 +76,38 @@ public class StringMatchExact implements IsStringMatchMatchType
      * No args constructor for use in serialization
      * 
      */
-    public StringMatchExact() {
+    public ClaimToHeader() {
     }
 
     /**
      * 
-     * @param exact
+     * @param claim
+     * @param header
      */
-    public StringMatchExact(String exact) {
+    public ClaimToHeader(String claim, String header) {
         super();
-        this.exact = exact;
+        this.claim = claim;
+        this.header = header;
     }
 
-    @JsonProperty("Exact")
-    public String getExact() {
-        return exact;
+    @JsonProperty("claim")
+    public String getClaim() {
+        return claim;
     }
 
-    @JsonProperty("Exact")
-    public void setExact(String exact) {
-        this.exact = exact;
+    @JsonProperty("claim")
+    public void setClaim(String claim) {
+        this.claim = claim;
+    }
+
+    @JsonProperty("header")
+    public String getHeader() {
+        return header;
+    }
+
+    @JsonProperty("header")
+    public void setHeader(String header) {
+        this.header = header;
     }
 
     @JsonAnyGetter

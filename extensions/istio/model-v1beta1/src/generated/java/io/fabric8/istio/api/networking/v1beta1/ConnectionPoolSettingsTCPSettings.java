@@ -38,6 +38,7 @@ import lombok.experimental.Accessors;
     "kind",
     "metadata",
     "connectTimeout",
+    "maxConnectionDuration",
     "maxConnections",
     "tcpKeepalive"
 })
@@ -68,6 +69,8 @@ public class ConnectionPoolSettingsTCPSettings implements KubernetesResource
 
     @JsonProperty("connectTimeout")
     private String connectTimeout;
+    @JsonProperty("maxConnectionDuration")
+    private String maxConnectionDuration;
     @JsonProperty("maxConnections")
     private Integer maxConnections;
     @JsonProperty("tcpKeepalive")
@@ -85,12 +88,14 @@ public class ConnectionPoolSettingsTCPSettings implements KubernetesResource
     /**
      * 
      * @param tcpKeepalive
+     * @param maxConnectionDuration
      * @param connectTimeout
      * @param maxConnections
      */
-    public ConnectionPoolSettingsTCPSettings(String connectTimeout, Integer maxConnections, ConnectionPoolSettingsTCPSettingsTcpKeepalive tcpKeepalive) {
+    public ConnectionPoolSettingsTCPSettings(String connectTimeout, String maxConnectionDuration, Integer maxConnections, ConnectionPoolSettingsTCPSettingsTcpKeepalive tcpKeepalive) {
         super();
         this.connectTimeout = connectTimeout;
+        this.maxConnectionDuration = maxConnectionDuration;
         this.maxConnections = maxConnections;
         this.tcpKeepalive = tcpKeepalive;
     }
@@ -103,6 +108,16 @@ public class ConnectionPoolSettingsTCPSettings implements KubernetesResource
     @JsonProperty("connectTimeout")
     public void setConnectTimeout(String connectTimeout) {
         this.connectTimeout = connectTimeout;
+    }
+
+    @JsonProperty("maxConnectionDuration")
+    public String getMaxConnectionDuration() {
+        return maxConnectionDuration;
+    }
+
+    @JsonProperty("maxConnectionDuration")
+    public void setMaxConnectionDuration(String maxConnectionDuration) {
+        this.maxConnectionDuration = maxConnectionDuration;
     }
 
     @JsonProperty("maxConnections")

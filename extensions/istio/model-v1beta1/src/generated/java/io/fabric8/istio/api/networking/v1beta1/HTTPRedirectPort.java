@@ -36,7 +36,7 @@ import lombok.experimental.Accessors;
     "apiVersion",
     "kind",
     "metadata",
-    "port"
+    "Port"
 })
 @ToString
 @EqualsAndHashCode
@@ -63,7 +63,7 @@ import lombok.experimental.Accessors;
 public class HTTPRedirectPort implements IsHTTPRedirectRedirectPort
 {
 
-    @JsonProperty("port")
+    @JsonProperty("Port")
     private Integer port;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
@@ -84,12 +84,12 @@ public class HTTPRedirectPort implements IsHTTPRedirectRedirectPort
         this.port = port;
     }
 
-    @JsonProperty("port")
+    @JsonProperty("Port")
     public Integer getPort() {
         return port;
     }
 
-    @JsonProperty("port")
+    @JsonProperty("Port")
     public void setPort(Integer port) {
         this.port = port;
     }

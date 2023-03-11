@@ -9,11 +9,13 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import io.fabric8.kubernetes.api.model.Container;
 import io.fabric8.kubernetes.api.model.ContainerPort;
 import io.fabric8.kubernetes.api.model.EnvVar;
 import io.fabric8.kubernetes.api.model.IntOrString;
+import io.fabric8.kubernetes.api.model.KubernetesResource;
 import io.fabric8.kubernetes.api.model.LabelSelector;
 import io.fabric8.kubernetes.api.model.LocalObjectReference;
 import io.fabric8.kubernetes.api.model.ObjectMeta;
@@ -30,13 +32,13 @@ import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.Accessors;
 
-@JsonDeserialize(using = com.fasterxml.jackson.databind.JsonDeserializer.None.class)
+@JsonDeserialize(using = io.fabric8.kubernetes.model.jackson.JsonUnwrappedDeserializer.class)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
     "apiVersion",
     "kind",
     "metadata",
-    "Exact"
+    "Specifier"
 })
 @ToString
 @EqualsAndHashCode
@@ -60,11 +62,12 @@ import lombok.experimental.Accessors;
     @BuildableReference(Volume.class),
     @BuildableReference(VolumeMount.class)
 })
-public class StringMatchExact implements IsStringMatchMatchType
+public class HTTPBody implements KubernetesResource
 {
 
-    @JsonProperty("Exact")
-    private String exact;
+    @JsonProperty("Specifier")
+    @JsonUnwrapped
+    private IsHTTPBodySpecifier specifier;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
@@ -72,26 +75,26 @@ public class StringMatchExact implements IsStringMatchMatchType
      * No args constructor for use in serialization
      * 
      */
-    public StringMatchExact() {
+    public HTTPBody() {
     }
 
     /**
      * 
-     * @param exact
+     * @param specifier
      */
-    public StringMatchExact(String exact) {
+    public HTTPBody(IsHTTPBodySpecifier specifier) {
         super();
-        this.exact = exact;
+        this.specifier = specifier;
     }
 
-    @JsonProperty("Exact")
-    public String getExact() {
-        return exact;
+    @JsonProperty("Specifier")
+    public IsHTTPBodySpecifier getSpecifier() {
+        return specifier;
     }
 
-    @JsonProperty("Exact")
-    public void setExact(String exact) {
-        this.exact = exact;
+    @JsonProperty("Specifier")
+    public void setSpecifier(IsHTTPBodySpecifier specifier) {
+        this.specifier = specifier;
     }
 
     @JsonAnyGetter

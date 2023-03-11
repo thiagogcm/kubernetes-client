@@ -14,6 +14,7 @@ import io.fabric8.kubernetes.api.model.Container;
 import io.fabric8.kubernetes.api.model.ContainerPort;
 import io.fabric8.kubernetes.api.model.EnvVar;
 import io.fabric8.kubernetes.api.model.IntOrString;
+import io.fabric8.kubernetes.api.model.KubernetesResource;
 import io.fabric8.kubernetes.api.model.LabelSelector;
 import io.fabric8.kubernetes.api.model.LocalObjectReference;
 import io.fabric8.kubernetes.api.model.ObjectMeta;
@@ -36,7 +37,7 @@ import lombok.experimental.Accessors;
     "apiVersion",
     "kind",
     "metadata",
-    "Exact"
+    "tableSize"
 })
 @ToString
 @EqualsAndHashCode
@@ -60,11 +61,11 @@ import lombok.experimental.Accessors;
     @BuildableReference(Volume.class),
     @BuildableReference(VolumeMount.class)
 })
-public class StringMatchExact implements IsStringMatchMatchType
+public class LoadBalancerSettingsConsistentHashLBMagLev implements KubernetesResource
 {
 
-    @JsonProperty("Exact")
-    private String exact;
+    @JsonProperty("tableSize")
+    private Integer tableSize;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
@@ -72,26 +73,26 @@ public class StringMatchExact implements IsStringMatchMatchType
      * No args constructor for use in serialization
      * 
      */
-    public StringMatchExact() {
+    public LoadBalancerSettingsConsistentHashLBMagLev() {
     }
 
     /**
      * 
-     * @param exact
+     * @param tableSize
      */
-    public StringMatchExact(String exact) {
+    public LoadBalancerSettingsConsistentHashLBMagLev(Integer tableSize) {
         super();
-        this.exact = exact;
+        this.tableSize = tableSize;
     }
 
-    @JsonProperty("Exact")
-    public String getExact() {
-        return exact;
+    @JsonProperty("tableSize")
+    public Integer getTableSize() {
+        return tableSize;
     }
 
-    @JsonProperty("Exact")
-    public void setExact(String exact) {
-        this.exact = exact;
+    @JsonProperty("tableSize")
+    public void setTableSize(Integer tableSize) {
+        this.tableSize = tableSize;
     }
 
     @JsonAnyGetter

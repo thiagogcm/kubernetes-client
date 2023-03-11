@@ -14,6 +14,7 @@ import io.fabric8.kubernetes.api.model.Container;
 import io.fabric8.kubernetes.api.model.ContainerPort;
 import io.fabric8.kubernetes.api.model.EnvVar;
 import io.fabric8.kubernetes.api.model.IntOrString;
+import io.fabric8.kubernetes.api.model.KubernetesResource;
 import io.fabric8.kubernetes.api.model.LabelSelector;
 import io.fabric8.kubernetes.api.model.LocalObjectReference;
 import io.fabric8.kubernetes.api.model.ObjectMeta;
@@ -36,7 +37,8 @@ import lombok.experimental.Accessors;
     "apiVersion",
     "kind",
     "metadata",
-    "Exact"
+    "body",
+    "status"
 })
 @ToString
 @EqualsAndHashCode
@@ -60,11 +62,13 @@ import lombok.experimental.Accessors;
     @BuildableReference(Volume.class),
     @BuildableReference(VolumeMount.class)
 })
-public class StringMatchExact implements IsStringMatchMatchType
+public class HTTPDirectResponse implements KubernetesResource
 {
 
-    @JsonProperty("Exact")
-    private String exact;
+    @JsonProperty("body")
+    private HTTPBody body;
+    @JsonProperty("status")
+    private Integer status;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
@@ -72,26 +76,38 @@ public class StringMatchExact implements IsStringMatchMatchType
      * No args constructor for use in serialization
      * 
      */
-    public StringMatchExact() {
+    public HTTPDirectResponse() {
     }
 
     /**
      * 
-     * @param exact
+     * @param body
+     * @param status
      */
-    public StringMatchExact(String exact) {
+    public HTTPDirectResponse(HTTPBody body, Integer status) {
         super();
-        this.exact = exact;
+        this.body = body;
+        this.status = status;
     }
 
-    @JsonProperty("Exact")
-    public String getExact() {
-        return exact;
+    @JsonProperty("body")
+    public HTTPBody getBody() {
+        return body;
     }
 
-    @JsonProperty("Exact")
-    public void setExact(String exact) {
-        this.exact = exact;
+    @JsonProperty("body")
+    public void setBody(HTTPBody body) {
+        this.body = body;
+    }
+
+    @JsonProperty("status")
+    public Integer getStatus() {
+        return status;
+    }
+
+    @JsonProperty("status")
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     @JsonAnyGetter

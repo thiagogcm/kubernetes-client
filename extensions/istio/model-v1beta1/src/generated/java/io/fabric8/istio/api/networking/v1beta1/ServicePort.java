@@ -14,6 +14,7 @@ import io.fabric8.kubernetes.api.model.Container;
 import io.fabric8.kubernetes.api.model.ContainerPort;
 import io.fabric8.kubernetes.api.model.EnvVar;
 import io.fabric8.kubernetes.api.model.IntOrString;
+import io.fabric8.kubernetes.api.model.KubernetesResource;
 import io.fabric8.kubernetes.api.model.LabelSelector;
 import io.fabric8.kubernetes.api.model.LocalObjectReference;
 import io.fabric8.kubernetes.api.model.ObjectMeta;
@@ -36,7 +37,10 @@ import lombok.experimental.Accessors;
     "apiVersion",
     "kind",
     "metadata",
-    "Exact"
+    "name",
+    "number",
+    "protocol",
+    "targetPort"
 })
 @ToString
 @EqualsAndHashCode
@@ -60,11 +64,17 @@ import lombok.experimental.Accessors;
     @BuildableReference(Volume.class),
     @BuildableReference(VolumeMount.class)
 })
-public class StringMatchExact implements IsStringMatchMatchType
+public class ServicePort implements KubernetesResource
 {
 
-    @JsonProperty("Exact")
-    private String exact;
+    @JsonProperty("name")
+    private String name;
+    @JsonProperty("number")
+    private Integer number;
+    @JsonProperty("protocol")
+    private String protocol;
+    @JsonProperty("targetPort")
+    private Integer targetPort;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
@@ -72,26 +82,62 @@ public class StringMatchExact implements IsStringMatchMatchType
      * No args constructor for use in serialization
      * 
      */
-    public StringMatchExact() {
+    public ServicePort() {
     }
 
     /**
      * 
-     * @param exact
+     * @param number
+     * @param protocol
+     * @param name
+     * @param targetPort
      */
-    public StringMatchExact(String exact) {
+    public ServicePort(String name, Integer number, String protocol, Integer targetPort) {
         super();
-        this.exact = exact;
+        this.name = name;
+        this.number = number;
+        this.protocol = protocol;
+        this.targetPort = targetPort;
     }
 
-    @JsonProperty("Exact")
-    public String getExact() {
-        return exact;
+    @JsonProperty("name")
+    public String getName() {
+        return name;
     }
 
-    @JsonProperty("Exact")
-    public void setExact(String exact) {
-        this.exact = exact;
+    @JsonProperty("name")
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @JsonProperty("number")
+    public Integer getNumber() {
+        return number;
+    }
+
+    @JsonProperty("number")
+    public void setNumber(Integer number) {
+        this.number = number;
+    }
+
+    @JsonProperty("protocol")
+    public String getProtocol() {
+        return protocol;
+    }
+
+    @JsonProperty("protocol")
+    public void setProtocol(String protocol) {
+        this.protocol = protocol;
+    }
+
+    @JsonProperty("targetPort")
+    public Integer getTargetPort() {
+        return targetPort;
+    }
+
+    @JsonProperty("targetPort")
+    public void setTargetPort(Integer targetPort) {
+        this.targetPort = targetPort;
     }
 
     @JsonAnyGetter

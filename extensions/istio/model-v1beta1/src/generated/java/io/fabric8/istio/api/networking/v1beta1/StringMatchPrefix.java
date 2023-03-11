@@ -36,7 +36,7 @@ import lombok.experimental.Accessors;
     "apiVersion",
     "kind",
     "metadata",
-    "prefix"
+    "Prefix"
 })
 @ToString
 @EqualsAndHashCode
@@ -63,7 +63,7 @@ import lombok.experimental.Accessors;
 public class StringMatchPrefix implements IsStringMatchMatchType
 {
 
-    @JsonProperty("prefix")
+    @JsonProperty("Prefix")
     private String prefix;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
@@ -84,12 +84,12 @@ public class StringMatchPrefix implements IsStringMatchMatchType
         this.prefix = prefix;
     }
 
-    @JsonProperty("prefix")
+    @JsonProperty("Prefix")
     public String getPrefix() {
         return prefix;
     }
 
-    @JsonProperty("prefix")
+    @JsonProperty("Prefix")
     public void setPrefix(String prefix) {
         this.prefix = prefix;
     }

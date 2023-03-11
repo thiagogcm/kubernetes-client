@@ -36,7 +36,7 @@ import lombok.experimental.Accessors;
     "apiVersion",
     "kind",
     "metadata",
-    "Exact"
+    "minimumRingSize"
 })
 @ToString
 @EqualsAndHashCode
@@ -60,11 +60,11 @@ import lombok.experimental.Accessors;
     @BuildableReference(Volume.class),
     @BuildableReference(VolumeMount.class)
 })
-public class StringMatchExact implements IsStringMatchMatchType
+public class LoadBalancerSettingsConsistentHashLBRingHashValue implements IsLoadBalancerSettingsConsistentHashLBHashAlgorithm
 {
 
-    @JsonProperty("Exact")
-    private String exact;
+    @JsonProperty("minimumRingSize")
+    private Integer minimumRingSize;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
@@ -72,26 +72,26 @@ public class StringMatchExact implements IsStringMatchMatchType
      * No args constructor for use in serialization
      * 
      */
-    public StringMatchExact() {
+    public LoadBalancerSettingsConsistentHashLBRingHashValue() {
     }
 
     /**
      * 
-     * @param exact
+     * @param minimumRingSize
      */
-    public StringMatchExact(String exact) {
+    public LoadBalancerSettingsConsistentHashLBRingHashValue(Integer minimumRingSize) {
         super();
-        this.exact = exact;
+        this.minimumRingSize = minimumRingSize;
     }
 
-    @JsonProperty("Exact")
-    public String getExact() {
-        return exact;
+    @JsonProperty("minimumRingSize")
+    public Integer getMinimumRingSize() {
+        return minimumRingSize;
     }
 
-    @JsonProperty("Exact")
-    public void setExact(String exact) {
-        this.exact = exact;
+    @JsonProperty("minimumRingSize")
+    public void setMinimumRingSize(Integer minimumRingSize) {
+        this.minimumRingSize = minimumRingSize;
     }
 
     @JsonAnyGetter

@@ -90,7 +90,7 @@ public class ServiceEntrySpec implements KubernetesResource
     private ServiceEntryLocation location;
     @JsonProperty("ports")
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
-    private List<Port> ports = new ArrayList<Port>();
+    private List<ServicePort> ports = new ArrayList<ServicePort>();
     @JsonProperty("resolution")
     private ServiceEntryResolution resolution;
     @JsonProperty("subjectAltNames")
@@ -120,7 +120,7 @@ public class ServiceEntrySpec implements KubernetesResource
      * @param ports
      * @param resolution
      */
-    public ServiceEntrySpec(List<String> addresses, List<WorkloadEntrySpec> endpoints, List<String> exportTo, List<String> hosts, ServiceEntryLocation location, List<Port> ports, ServiceEntryResolution resolution, List<String> subjectAltNames, WorkloadSelector workloadSelector) {
+    public ServiceEntrySpec(List<String> addresses, List<WorkloadEntrySpec> endpoints, List<String> exportTo, List<String> hosts, ServiceEntryLocation location, List<ServicePort> ports, ServiceEntryResolution resolution, List<String> subjectAltNames, WorkloadSelector workloadSelector) {
         super();
         this.addresses = addresses;
         this.endpoints = endpoints;
@@ -184,12 +184,12 @@ public class ServiceEntrySpec implements KubernetesResource
     }
 
     @JsonProperty("ports")
-    public List<Port> getPorts() {
+    public List<ServicePort> getPorts() {
         return ports;
     }
 
     @JsonProperty("ports")
-    public void setPorts(List<Port> ports) {
+    public void setPorts(List<ServicePort> ports) {
         this.ports = ports;
     }
 

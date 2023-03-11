@@ -36,7 +36,7 @@ import lombok.experimental.Accessors;
     "apiVersion",
     "kind",
     "metadata",
-    "provider"
+    "Provider"
 })
 @ToString
 @EqualsAndHashCode
@@ -63,7 +63,7 @@ import lombok.experimental.Accessors;
 public class AuthorizationPolicyProvider implements IsAuthorizationPolicyActionDetail
 {
 
-    @JsonProperty("provider")
+    @JsonProperty("Provider")
     private AuthorizationPolicyExtensionProvider provider;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
@@ -84,12 +84,12 @@ public class AuthorizationPolicyProvider implements IsAuthorizationPolicyActionD
         this.provider = provider;
     }
 
-    @JsonProperty("provider")
+    @JsonProperty("Provider")
     public AuthorizationPolicyExtensionProvider getProvider() {
         return provider;
     }
 
-    @JsonProperty("provider")
+    @JsonProperty("Provider")
     public void setProvider(AuthorizationPolicyExtensionProvider provider) {
         this.provider = provider;
     }

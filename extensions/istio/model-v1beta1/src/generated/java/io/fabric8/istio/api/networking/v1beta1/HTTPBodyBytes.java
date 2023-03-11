@@ -36,7 +36,7 @@ import lombok.experimental.Accessors;
     "apiVersion",
     "kind",
     "metadata",
-    "Exact"
+    "Bytes"
 })
 @ToString
 @EqualsAndHashCode
@@ -60,11 +60,11 @@ import lombok.experimental.Accessors;
     @BuildableReference(Volume.class),
     @BuildableReference(VolumeMount.class)
 })
-public class StringMatchExact implements IsStringMatchMatchType
+public class HTTPBodyBytes implements IsHTTPBodySpecifier
 {
 
-    @JsonProperty("Exact")
-    private String exact;
+    @JsonProperty("Bytes")
+    private String bytes;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
@@ -72,26 +72,26 @@ public class StringMatchExact implements IsStringMatchMatchType
      * No args constructor for use in serialization
      * 
      */
-    public StringMatchExact() {
+    public HTTPBodyBytes() {
     }
 
     /**
      * 
-     * @param exact
+     * @param bytes
      */
-    public StringMatchExact(String exact) {
+    public HTTPBodyBytes(String bytes) {
         super();
-        this.exact = exact;
+        this.bytes = bytes;
     }
 
-    @JsonProperty("Exact")
-    public String getExact() {
-        return exact;
+    @JsonProperty("Bytes")
+    public String getBytes() {
+        return bytes;
     }
 
-    @JsonProperty("Exact")
-    public void setExact(String exact) {
-        this.exact = exact;
+    @JsonProperty("Bytes")
+    public void setBytes(String bytes) {
+        this.bytes = bytes;
     }
 
     @JsonAnyGetter
