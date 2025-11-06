@@ -33,14 +33,14 @@ require (
 	github.com/tektoncd/pipeline v1.3.1
 	github.com/tektoncd/triggers v0.33.0
 	istio.io/client-go v1.27.0
-	k8s.io/api v0.34.0
-	k8s.io/apiextensions-apiserver v0.34.0
-	k8s.io/apimachinery v0.34.0
+	k8s.io/api v0.34.1
+	k8s.io/apiextensions-apiserver v0.34.1
+	k8s.io/apimachinery v0.34.1
 	k8s.io/autoscaler/vertical-pod-autoscaler v1.4.1
 	k8s.io/client-go v12.0.0+incompatible
 	k8s.io/gengo/v2 v2.0.0-20250604051438-85fd79dbfd9f
 	k8s.io/kube-openapi v0.0.0-20250710124328-f3f2b991d03b
-	k8s.io/metrics v0.34.0
+	k8s.io/metrics v0.34.1
 	knative.dev/caching v0.0.0-20250821143751-b982aa0cd1c1
 	knative.dev/eventing v0.46.2
 	knative.dev/eventing-awssqs v0.29.0
@@ -74,12 +74,12 @@ replace (
 	github.com/openshift/hive => github.com/openshift/hive v1.1.17-0.20250725035156-a29a23859060 // Latest Master
 	github.com/openshift/installer => github.com/openshift/installer v1.4.19-ec5 // Most up-to-date tag https://issues.redhat.com/browse/OCPBUGS-42448
 
-	k8s.io/api => k8s.io/api v0.34.0
-	k8s.io/client-go => k8s.io/client-go v0.34.0
-	k8s.io/cloud-provider => k8s.io/cloud-provider v0.34.0
-	k8s.io/csi-translation-lib => k8s.io/csi-translation-lib v0.34.0
-	k8s.io/kube-scheduler => k8s.io/kube-scheduler v0.34.0
-	k8s.io/mount-utils => k8s.io/mount-utils v0.34.0
+	k8s.io/api => k8s.io/api v0.34.1
+	k8s.io/client-go => k8s.io/client-go v0.34.1
+	k8s.io/cloud-provider => k8s.io/cloud-provider v0.34.1
+	k8s.io/csi-translation-lib => k8s.io/csi-translation-lib v0.34.1
+	k8s.io/kube-scheduler => k8s.io/kube-scheduler v0.34.1
+	k8s.io/mount-utils => k8s.io/mount-utils v0.34.1
 
 	// Some dependencies are not compatible with latest controller-runtime webhooks TODO: should be removed as soon as possible
 	sigs.k8s.io/controller-runtime => sigs.k8s.io/controller-runtime v0.19.7
@@ -229,8 +229,8 @@ require (
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 	istio.io/api v1.27.0-beta.0.0.20250731082105-36763529c462 // indirect
-	k8s.io/apiserver v0.34.0 // indirect
-	k8s.io/component-base v0.34.0 // indirect
+	k8s.io/apiserver v0.34.1 // indirect
+	k8s.io/component-base v0.34.1 // indirect
 	k8s.io/klog/v2 v2.130.1 // indirect
 	k8s.io/utils v0.0.0-20250604170112-4c0f3b243397 // indirect
 	knative.dev/pkg v0.0.0-20250821143151-4ffdcf6b3fa5 // indirect
