@@ -37,7 +37,7 @@ require (
 	k8s.io/apiextensions-apiserver v0.34.1
 	k8s.io/apimachinery v0.34.1
 	k8s.io/autoscaler/vertical-pod-autoscaler v1.4.1
-	k8s.io/client-go v12.0.0+incompatible
+	k8s.io/client-go v0.34.1
 	k8s.io/gengo/v2 v2.0.0-20250820003526-c297c0c1eb9d
 	k8s.io/kube-openapi v0.0.0-20250814151709-d7b6acb124c3
 	k8s.io/metrics v0.34.1
@@ -56,7 +56,7 @@ require (
 	open-cluster-management.io/multicloud-operators-channel v0.16.0
 	open-cluster-management.io/multicloud-operators-subscription v0.16.0
 	sigs.k8s.io/cluster-api v1.10.4
-	sigs.k8s.io/gateway-api v1.3.0
+	sigs.k8s.io/gateway-api v1.4.0
 	sigs.k8s.io/kustomize/api v0.20.1
 	// This version is older than v1.10.0 see replacements below
 	volcano.sh/apis v1.19.6
@@ -74,12 +74,12 @@ replace (
 	github.com/openshift/hive => github.com/openshift/hive v1.1.17-0.20250725035156-a29a23859060 // Latest Master
 	github.com/openshift/installer => github.com/openshift/installer v1.4.19-ec5 // Most up-to-date tag https://issues.redhat.com/browse/OCPBUGS-42448
 
-	k8s.io/api => k8s.io/api v0.33.0
-	k8s.io/client-go => k8s.io/client-go v0.33.0
-	k8s.io/cloud-provider => k8s.io/cloud-provider v0.33.0
-	k8s.io/csi-translation-lib => k8s.io/csi-translation-lib v0.33.0
-	k8s.io/kube-scheduler => k8s.io/kube-scheduler v0.33.0
-	k8s.io/mount-utils => k8s.io/mount-utils v0.33.0
+	k8s.io/api => k8s.io/api v0.34.1
+	k8s.io/client-go => k8s.io/client-go v0.34.1
+	k8s.io/cloud-provider => k8s.io/cloud-provider v0.34.1
+	k8s.io/csi-translation-lib => k8s.io/csi-translation-lib v0.34.1
+	k8s.io/kube-scheduler => k8s.io/kube-scheduler v0.34.1
+	k8s.io/mount-utils => k8s.io/mount-utils v0.34.1
 
 	// Some dependencies are not compatible with latest controller-runtime webhooks TODO: should be removed as soon as possible
 	sigs.k8s.io/controller-runtime => sigs.k8s.io/controller-runtime v0.19.7
