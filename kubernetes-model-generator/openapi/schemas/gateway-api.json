@@ -24,6 +24,7 @@
       }
     },
     "io.k8s.networking.gateway.v1.AllowedRoutes": {
+      "description": "AllowedRoutes defines which Routes may be attached to this Listener.",
       "type": "object",
       "properties": {
         "kinds": {
@@ -50,6 +51,7 @@
       }
     },
     "io.k8s.networking.gateway.v1.BackendObjectReference": {
+      "description": "BackendObjectReference defines how an ObjectReference that is specific to BackendRef. It includes a few additional fields and features than a regular ObjectReference.\n\nNote that when a namespace different than the local namespace is specified, a ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details.\n\nThe API object must be valid in the cluster; the Group and Kind must be registered in the cluster for this reference to be valid.\n\nReferences to objects with invalid Group and Kind are not valid, and must be rejected by the implementation, with appropriate Conditions set on the containing object.",
       "type": "object",
       "required": [
         "name"
@@ -87,6 +89,7 @@
       }
     },
     "io.k8s.networking.gateway.v1.BackendRef": {
+      "description": "BackendRef defines how a Route should forward a request to a Kubernetes resource.\n\nNote that when a namespace different than the local namespace is specified, a ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details.\n\n\u003cgateway:experimental:description\u003e\n\nWhen the BackendRef points to a Kubernetes Service, implementations SHOULD honor the appProtocol field if it is set for the target Service Port.\n\nImplementations supporting appProtocol SHOULD recognize the Kubernetes Standard Application Protocols defined in KEP-3726.\n\nIf a Service appProtocol isn't specified, an implementation MAY infer the backend protocol through its own means. Implementations MAY infer the protocol from the Route type referring to the backend Service.\n\nIf a Route is not able to send traffic to the backend using the specified protocol then the backend is considered invalid. Implementations MUST set the \"ResolvedRefs\" condition to \"False\" with the \"UnsupportedProtocol\" reason.\n\n\u003c/gateway:experimental:description\u003e\n\nNote that when the BackendTLSPolicy object is enabled by the implementation, there are some extra rules about validity to consider here. See the fields where this struct is used for more information about the exact behavior.",
       "type": "object",
       "required": [
         "name"
@@ -285,6 +288,7 @@
       }
     },
     "io.k8s.networking.gateway.v1.CommonRouteSpec": {
+      "description": "CommonRouteSpec defines the common attributes that all Routes MUST include within their spec.",
       "type": "object",
       "properties": {
         "parentRefs": {
@@ -945,6 +949,7 @@
       }
     },
     "io.k8s.networking.gateway.v1.GatewayClassSpec": {
+      "description": "GatewayClassSpec reflects the configuration of a class of Gateways.",
       "type": "object",
       "required": [
         "controllerName"
@@ -973,6 +978,7 @@
       }
     },
     "io.k8s.networking.gateway.v1.GatewayClassStatus": {
+      "description": "GatewayClassStatus is the current status for the GatewayClass.",
       "type": "object",
       "properties": {
         "conditions": {
@@ -1076,6 +1082,7 @@
       }
     },
     "io.k8s.networking.gateway.v1.GatewaySpec": {
+      "description": "GatewaySpec defines the desired state of Gateway.\n\nNot all possible combinations of options specified in the Spec are valid. Some invalid configurations can be caught synchronously via CRD validation, but there are many cases that will require asynchronous signaling via the GatewayStatus block.",
       "type": "object",
       "required": [
         "gatewayClassName",
@@ -1134,6 +1141,7 @@
       }
     },
     "io.k8s.networking.gateway.v1.GatewaySpecAddress": {
+      "description": "GatewaySpecAddress describes an address that can be bound to a Gateway.",
       "type": "object",
       "properties": {
         "type": {
@@ -1154,6 +1162,7 @@
       }
     },
     "io.k8s.networking.gateway.v1.GatewayStatus": {
+      "description": "GatewayStatus defines the observed state of Gateway.",
       "type": "object",
       "properties": {
         "addresses": {
@@ -1280,6 +1289,7 @@
       }
     },
     "io.k8s.networking.gateway.v1.HTTPBackendRef": {
+      "description": "HTTPBackendRef defines how a HTTPRoute forwards a HTTP request.\n\nNote that when a namespace different than the local namespace is specified, a ReferenceGrant object is required in the referent namespace to allow that namespace's owner to accept the reference. See the ReferenceGrant documentation for details.\n\n\u003cgateway:experimental:description\u003e\n\nWhen the BackendRef points to a Kubernetes Service, implementations SHOULD honor the appProtocol field if it is set for the target Service Port.\n\nImplementations supporting appProtocol SHOULD recognize the Kubernetes Standard Application Protocols defined in KEP-3726.\n\nIf a Service appProtocol isn't specified, an implementation MAY infer the backend protocol through its own means. Implementations MAY infer the protocol from the Route type referring to the backend Service.\n\nIf a Route is not able to send traffic to the backend using the specified protocol then the backend is considered invalid. Implementations MUST set the \"ResolvedRefs\" condition to \"False\" with the \"UnsupportedProtocol\" reason.\n\n\u003c/gateway:experimental:description\u003e",
       "type": "object",
       "required": [
         "name"
@@ -1427,6 +1437,7 @@
       }
     },
     "io.k8s.networking.gateway.v1.HTTPHeader": {
+      "description": "HTTPHeader represents an HTTP Header name and value as defined by RFC 7230.",
       "type": "object",
       "required": [
         "name",
@@ -1453,6 +1464,7 @@
       }
     },
     "io.k8s.networking.gateway.v1.HTTPHeaderFilter": {
+      "description": "HTTPHeaderFilter defines a filter that modifies the headers of an HTTP request or response. Only one action for a given header name is permitted. Filters specifying multiple actions of the same or different type for any one header name are invalid. Configuration to set or add multiple values for a header must use RFC 7230 header value formatting, separating each value with a comma.",
       "type": "object",
       "properties": {
         "add": {
@@ -1498,6 +1510,7 @@
       }
     },
     "io.k8s.networking.gateway.v1.HTTPHeaderMatch": {
+      "description": "HTTPHeaderMatch describes how to select a HTTP route by matching HTTP request headers.",
       "type": "object",
       "required": [
         "name",
@@ -1528,6 +1541,7 @@
       }
     },
     "io.k8s.networking.gateway.v1.HTTPPathMatch": {
+      "description": "HTTPPathMatch describes how to select a HTTP route by matching the HTTP request path.",
       "type": "object",
       "properties": {
         "type": {
@@ -1548,6 +1562,7 @@
       }
     },
     "io.k8s.networking.gateway.v1.HTTPPathModifier": {
+      "description": "HTTPPathModifier defines configuration for path modifiers.",
       "type": "object",
       "required": [
         "type"
@@ -1576,6 +1591,7 @@
       }
     },
     "io.k8s.networking.gateway.v1.HTTPQueryParamMatch": {
+      "description": "HTTPQueryParamMatch describes how to select a HTTP route by matching HTTP query parameters.",
       "type": "object",
       "required": [
         "name",
@@ -1606,6 +1622,7 @@
       }
     },
     "io.k8s.networking.gateway.v1.HTTPRequestMirrorFilter": {
+      "description": "HTTPRequestMirrorFilter defines configuration for the RequestMirror filter.",
       "type": "object",
       "required": [
         "backendRef"
@@ -1635,6 +1652,7 @@
       }
     },
     "io.k8s.networking.gateway.v1.HTTPRequestRedirectFilter": {
+      "description": "HTTPRequestRedirect defines a filter that redirects a request. This filter MUST NOT be used on the same Route rule as a HTTPURLRewrite filter.",
       "type": "object",
       "properties": {
         "hostname": {
@@ -1707,6 +1725,7 @@
       }
     },
     "io.k8s.networking.gateway.v1.HTTPRouteFilter": {
+      "description": "HTTPRouteFilter defines processing steps that must be completed during the request or response lifecycle. HTTPRouteFilters are meant as an extension point to express processing that may be done in Gateway implementations. Some examples include request or response modification, implementing authentication strategies, rate-limiting, and traffic shaping. API guarantee/conformance is defined based on the type of the filter.\n\n\u003cgateway:experimental:validation:XValidation:message=\"filter.cors must be nil if the filter.type is not CORS\",rule=\"!(has(self.cors) \u0026\u0026 self.type != 'CORS')\"\u003e \u003cgateway:experimental:validation:XValidation:message=\"filter.cors must be specified for CORS filter.type\",rule=\"!(!has(self.cors) \u0026\u0026 self.type == 'CORS')\"\u003e \u003cgateway:experimental:validation:XValidation:message=\"filter.externalAuth must be nil if the filter.type is not ExternalAuth\",rule=\"!(has(self.externalAuth) \u0026\u0026 self.type != 'ExternalAuth')\"\u003e \u003cgateway:experimental:validation:XValidation:message=\"filter.externalAuth must be specified for ExternalAuth filter.type\",rule=\"!(!has(self.externalAuth) \u0026\u0026 self.type == 'ExternalAuth')\"\u003e",
       "type": "object",
       "required": [
         "type"
@@ -1794,6 +1813,7 @@
       }
     },
     "io.k8s.networking.gateway.v1.HTTPRouteMatch": {
+      "description": "HTTPRouteMatch defines the predicate used to match requests to a given action. Multiple match types are ANDed together, i.e. the match will evaluate to true only if all conditions are satisfied.\n\nFor example, the match below will match a HTTP request only if its path starts with `/foo` AND it contains the `version: v1` header:\n\n``` match:\n\n\tpath:\n\t  value: \"/foo\"\n\theaders:\n\t- name: \"version\"\n\t  value \"v1\"\n\n```",
       "type": "object",
       "properties": {
         "headers": {
@@ -1870,6 +1890,7 @@
       }
     },
     "io.k8s.networking.gateway.v1.HTTPRouteRule": {
+      "description": "HTTPRouteRule defines semantics for matching an HTTP request based on conditions (matches), processing it (filters), and forwarding the request to an API object (backendRefs).",
       "type": "object",
       "properties": {
         "backendRefs": {
@@ -1925,6 +1946,7 @@
       }
     },
     "io.k8s.networking.gateway.v1.HTTPRouteSpec": {
+      "description": "HTTPRouteSpec defines the desired state of HTTPRoute",
       "type": "object",
       "properties": {
         "hostnames": {
@@ -1968,6 +1990,7 @@
       }
     },
     "io.k8s.networking.gateway.v1.HTTPRouteStatus": {
+      "description": "HTTPRouteStatus defines the observed state of HTTPRoute.",
       "type": "object",
       "required": [
         "parents"
@@ -1992,6 +2015,7 @@
       }
     },
     "io.k8s.networking.gateway.v1.HTTPRouteTimeouts": {
+      "description": "HTTPRouteTimeouts defines timeouts that can be configured for an HTTPRoute. Timeout values are represented with Gateway API Duration formatting.",
       "type": "object",
       "properties": {
         "backendRequest": {
@@ -2012,6 +2036,7 @@
       }
     },
     "io.k8s.networking.gateway.v1.HTTPURLRewriteFilter": {
+      "description": "HTTPURLRewriteFilter defines a filter that modifies a request during forwarding. At most one of these filters may be used on a Route rule. This MUST NOT be used on the same Route rule as a HTTPRequestRedirect filter.\n\nSupport: Extended",
       "type": "object",
       "properties": {
         "hostname": {
@@ -2032,6 +2057,7 @@
       }
     },
     "io.k8s.networking.gateway.v1.Listener": {
+      "description": "Listener embodies the concept of a logical endpoint where a Gateway accepts network connections.",
       "type": "object",
       "required": [
         "name",
@@ -2098,6 +2124,7 @@
       }
     },
     "io.k8s.networking.gateway.v1.ListenerStatus": {
+      "description": "ListenerStatus is the status associated with a Listener.",
       "type": "object",
       "required": [
         "name",
@@ -2148,6 +2175,7 @@
       }
     },
     "io.k8s.networking.gateway.v1.ListenerTLSConfig": {
+      "description": "ListenerTLSConfig describes a TLS configuration for a listener.",
       "type": "object",
       "properties": {
         "certificateRefs": {
@@ -2181,6 +2209,7 @@
       }
     },
     "io.k8s.networking.gateway.v1.LocalObjectReference": {
+      "description": "LocalObjectReference identifies an API object within the namespace of the referrer. The API object must be valid in the cluster; the Group and Kind must be registered in the cluster for this reference to be valid.\n\nReferences to objects with invalid Group and Kind are not valid, and must be rejected by the implementation, with appropriate Conditions set on the containing object.",
       "type": "object",
       "required": [
         "group",
@@ -2390,6 +2419,7 @@
       }
     },
     "io.k8s.networking.gateway.v1.ParametersReference": {
+      "description": "ParametersReference identifies an API object containing controller-specific configuration resource within the cluster.",
       "type": "object",
       "required": [
         "group",
@@ -2426,6 +2456,7 @@
       }
     },
     "io.k8s.networking.gateway.v1.ParentReference": {
+      "description": "ParentReference identifies an API object (usually a Gateway) that can be considered a parent of this resource (usually a route). There are two kinds of parent resources with \"Core\" support:\n\n* Gateway (Gateway conformance profile) * Service (Mesh conformance profile, ClusterIP Services only)\n\nThis API may be extended in the future to support additional kinds of parent resources.\n\nThe API object must be valid in the cluster; the Group and Kind must be registered in the cluster for this reference to be valid.",
       "type": "object",
       "required": [
         "name"
@@ -2532,6 +2563,7 @@
       }
     },
     "io.k8s.networking.gateway.v1.RouteGroupKind": {
+      "description": "RouteGroupKind indicates the group and kind of a Route resource.",
       "type": "object",
       "required": [
         "kind"
@@ -2556,6 +2588,7 @@
       }
     },
     "io.k8s.networking.gateway.v1.RouteNamespaces": {
+      "description": "RouteNamespaces indicate which namespaces Routes should be selected from.",
       "type": "object",
       "properties": {
         "from": {
@@ -2576,6 +2609,7 @@
       }
     },
     "io.k8s.networking.gateway.v1.RouteParentStatus": {
+      "description": "RouteParentStatus describes the status of a route with respect to an associated Parent.",
       "type": "object",
       "required": [
         "parentRef",
@@ -2615,6 +2649,7 @@
       }
     },
     "io.k8s.networking.gateway.v1.RouteStatus": {
+      "description": "RouteStatus defines the common attributes that all Routes MUST include within their status.",
       "type": "object",
       "required": [
         "parents"
@@ -2639,6 +2674,7 @@
       }
     },
     "io.k8s.networking.gateway.v1.SecretObjectReference": {
+      "description": "SecretObjectReference identifies an API object including its namespace, defaulting to Secret.\n\nThe API object must be valid in the cluster; the Group and Kind must be registered in the cluster for this reference to be valid.\n\nReferences to objects with invalid Group and Kind are not valid, and must be rejected by the implementation, with appropriate Conditions set on the containing object.",
       "type": "object",
       "required": [
         "name"
@@ -2671,6 +2707,7 @@
       }
     },
     "io.k8s.networking.gateway.v1.SessionPersistence": {
+      "description": "SessionPersistence defines the desired state of SessionPersistence.",
       "type": "object",
       "properties": {
         "absoluteTimeout": {

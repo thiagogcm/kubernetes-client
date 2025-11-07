@@ -24,7 +24,7 @@ require (
 	github.com/operator-framework/operator-lifecycle-manager v0.33.0
 	github.com/ovn-org/ovn-kubernetes/go-controller v0.0.0-20241030140127-a68ef49d9441
 	github.com/prometheus-operator/prometheus-operator/pkg/apis/monitoring v0.84.1
-	github.com/spf13/cobra v1.9.1
+	github.com/spf13/cobra v1.10.1
 	github.com/stolostron/discovery v0.0.0-20250721184441-6a13204f0907
 	github.com/stolostron/klusterlet-addon-controller v0.0.0-20250324045714-0d7e21c66660
 	github.com/stolostron/multicluster-observability-operator v0.0.0-20250726172846-3a17a1a4168e
@@ -190,7 +190,7 @@ require (
 	github.com/rickb777/plural v1.2.2 // indirect
 	github.com/robfig/cron/v3 v3.0.1 // indirect
 	github.com/sirupsen/logrus v1.9.3 // indirect
-	github.com/spf13/pflag v1.0.7 // indirect
+	github.com/spf13/pflag v1.0.9 // indirect
 	github.com/stoewer/go-strcase v1.3.1 // indirect
 	github.com/stolostron/backplane-operator v0.0.0-20250724195055-fb90af6051f4 // indirect
 	github.com/stolostron/cluster-lifecycle-api v0.0.0-20240813023109-42b5c115d0a3 // indirect
