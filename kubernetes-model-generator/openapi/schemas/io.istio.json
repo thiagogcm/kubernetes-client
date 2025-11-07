@@ -4390,7 +4390,7 @@
         }
       },
       "x-fabric8-info": {
-        "Type": "nested",
+        "Type": "object",
         "Group": "",
         "Version": "v1beta1",
         "Kind": "AuthorizationPolicy_ExtensionProvider",
