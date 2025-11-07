@@ -82,3 +82,6 @@ zz_generated.openapi.go.report.txt
 
 # MacOS
 .DS_Store
+
+# VS Code
+.vscode/
